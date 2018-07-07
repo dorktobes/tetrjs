@@ -42,15 +42,15 @@ export default class Shape {
     this.updateBlocks();
   }
   descend() {
-    this.column = this.column + 1;
+    this.row = this.row + 1;
     this.updateBlocks();
   }
   moveLeft() {
-    this.row = this.row - 1;
+    this.column = this.column - 1;
     this.updateBlocks();
   }
   moveRight() {
-    this.row = this.row + 1;
+    this.column = this.column + 1;
     this.updateBlocks();
   }
   stop() {
