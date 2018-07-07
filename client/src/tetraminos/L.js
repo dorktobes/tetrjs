@@ -1,5 +1,5 @@
 import Shape from './Shape';
-/*
+/* borrowed from Joe Snowden
  * NORTH
  * 🐯🔄🐯
  * 🐯️️
