@@ -1,5 +1,5 @@
 export default class Shape {
-  constructor() {
+  constructor(board) {
     this.direction = 'north';
     this.row = 0;
     this.column = 3;
@@ -10,48 +10,68 @@ export default class Shape {
     this.blockThree = null;
     this.blockFour = null;
 
+    this.board = board;
+    this.newMoves = [];
+
     this.falling = true;
   }
-  updateBlocks() {
+  predictBlockLocations() {
     /* this function will be unique for every subclass
      * it exists here as a placeholder
      */
-    this.blockOne = null;
-    this.blockTwo = null;
-    this.blockThree = null;
-    this.blockFour = null;
-    return null;
+    const blockOne = [...this.blockOne];
+    const blockTwo = [...this.blockTwo];
+    const blockThree = [...this.blockThree];
+    const blockFour = [...this.blockFour];
+    return [blockOne, blockTwo, blockThree, blockFour];
+  }
+  checkIfMoveIsValid(move) {
+    const { board } = this;
+    this.newMoves = this.predictBlockLocations(move);
+    const [one, two, three, four] = this.newMoves;
+    return (
+      !board[one[0]][one[1]] &&
+      !board[two[0]][two[1]] &&
+      !board[three[0]][three[1]] &&
+      !board[four[0]][four[1]]
+    );
+  }
+  commitMove() {
+    const [one, two, three, four] = this.newMoves;
+    this.blockOne = one;
+    this.blockTwo = two;
+    this.blockThree = three;
+    this.blockFour = four;
+    return true;
   }
   rotate() {
+    let newDirection;
     switch (this.direction) {
       case 'north':
-        this.direction = 'west';
+        newDirection = 'west';
         break;
       case 'west':
-        this.direction = 'south';
+        newDirection = 'south';
         break;
       case 'south':
-        this.direction = 'east';
+        newDirection = 'east';
         break;
       case 'east':
-        this.direction = 'north';
+        newDirection = 'north';
         break;
       default:
-        this.direction = 'north';
+        newDirection = 'north';
     }
-    this.updateBlocks();
+    return this.checkIfMoveIsValid(newDirection) && this.commitMove();
   }
   descend() {
-    this.row = this.row + 1;
-    this.updateBlocks();
+    return this.checkIfMoveIsValid('descend') ? this.commitMove() : this.stop();
   }
   moveLeft() {
-    this.column = this.column - 1;
-    this.updateBlocks();
+    return this.checkIfMoveIsValid('left') && this.commitMove();
   }
   moveRight() {
-    this.column = this.column + 1;
-    this.updateBlocks();
+    return this.checkIfMoveIsValid('right') && this.commitMove();
   }
   stop() {
     this.falling = false;
