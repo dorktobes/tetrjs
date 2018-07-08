@@ -49,10 +49,10 @@ export default class L extends Shape {
         break;
       case 'west':
         this.hub = [row + 1, column];
-        one = [row, column - 1];
-        two = [row + 1, column - 1];
-        three = [row + 2, column - 1];
-        four = [row + 2, column];
+        one = [row - 1, column - 1];
+        two = [row, column - 1];
+        three = [row + 1, column - 1];
+        four = [row + 1, column];
         break;
       case 'south':
         this.hub = [row, column];
@@ -63,10 +63,10 @@ export default class L extends Shape {
         break;
       case 'east':
         this.hub = [row + 1, column];
-        one = [row, column - 1];
-        two = [row, column];
-        three = [row + 1, column];
-        four = [row + 2, column];
+        one = [row - 1, column - 1];
+        two = [row - 1, column];
+        three = [row, column];
+        four = [row + 1, column];
         break;
       case 'descend':
         one = [blockOne[0] + 1, blockOne[1]];
