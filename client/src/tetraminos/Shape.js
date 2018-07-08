@@ -36,12 +36,25 @@ export default class Shape {
       board[four[0]][four[1]] === 0
     );
   }
-  commitMove() {
+  commitMove(move) {
     const [one, two, three, four] = this.newMoves;
     this.blockOne = one;
     this.blockTwo = two;
     this.blockThree = three;
     this.blockFour = four;
+    switch (move) {
+      case 'descend':
+        this.row = this.row + 1;
+        break;
+      case 'left':
+        this.column = this.column - 1;
+        break;
+      case 'moveRight':
+        this.column = this.column + 1;
+        break;
+      default:
+        break;
+    }
     return true;
   }
   rotateAntiClockwise() {
@@ -82,16 +95,16 @@ export default class Shape {
       default:
         newDirection = this.direction;
     }
-    return this.checkIfMoveIsValid(newDirection) && this.commitMove();
+    return this.checkIfMoveIsValid(newDirection) && this.commitMove(newDirection);
   }
   descend() {
-    return this.checkIfMoveIsValid('descend') ? this.commitMove() : this.stop();
+    return this.checkIfMoveIsValid('descend') ? this.commitMove('descend') : this.stop();
   }
   moveLeft() {
-    return this.checkIfMoveIsValid('left') && this.commitMove();
+    return this.checkIfMoveIsValid('left') && this.commitMove('left');
   }
   moveRight() {
-    return this.checkIfMoveIsValid('right') && this.commitMove();
+    return this.checkIfMoveIsValid('right') && this.commitMove('right');
   }
   stop() {
     this.falling = false;
