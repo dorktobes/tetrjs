@@ -17,9 +17,9 @@ import Shape from './Shape';
  */
 
 export default class L extends Shape {
-  constructor() {
-    super();
-    const [row, column] = this;
+  constructor(board) {
+    super(board);
+    const { row, column } = this;
     this.hub = [row, column];
     this.blockOne = [row, column - 1];
     this.blockTwo = [row, column];
