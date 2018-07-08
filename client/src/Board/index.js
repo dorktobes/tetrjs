@@ -1,8 +1,7 @@
 export default class Board {
-  constructor(width, height, pieces) {
+  constructor(width, height) {
     this.width = width;
     this.height = height;
-    this.pieces = pieces;
     this.board = Array(height).fill(0).map(() => Array(width).fill(0));
 
     this.currentPiece = null;
@@ -53,15 +52,17 @@ export default class Board {
     this.board = newLines;
   }
   updateBoard(piece) {
-    const {
-      blockOne,
-      blockTwo,
-      blockThree,
-      blockFour,
-    } = piece;
-    this.board[blockOne[0]][blockOne[1]] = 1;
-    this.board[blockTwo[0]][blockTwo[1]] = 1;
-    this.board[blockThree[0]][blockThree[1]] = 1;
-    this.board[blockFour[0]][blockFour[1]] = 1;
+    if (piece) {
+      const {
+        blockOne,
+        blockTwo,
+        blockThree,
+        blockFour,
+      } = piece;
+      this.board[blockOne[0]][blockOne[1]] = 1;
+      this.board[blockTwo[0]][blockTwo[1]] = 1;
+      this.board[blockThree[0]][blockThree[1]] = 1;
+      this.board[blockFour[0]][blockFour[1]] = 1;
+    }
   }
 }
