@@ -1,29 +1,29 @@
 import Shape from './Shape';
 /* borrowed from Joe Snowden
  * NORTH
- * 🐯🔄🐯
- * 🐯️️
- * WEST
- * 🐯
  * 🐯🔄
- * 🐯🐯
- * SOUTH
- * ◽️🔄️🐯
- * 🐯🐯🐯
- * EAST
- * 🐯🐯
- * ◽️🔄
+ * ◽️🐯🐯
+ * WEST
  * ◽️🐯
+ * 🐯🔄
+ * 🐯
+ * SOUTH
+ * 🐯🔄
+ * ◽️🐯🐯
+ * EAST
+ * ◽️🐯
+ * 🐯🔄
+ * 🐯
  */
 
-export default class L extends Shape {
+export default class Z extends Shape {
   constructor(board) {
     super(board);
     const { row, column } = this;
     this.blockOne = [row, column - 1];
     this.blockTwo = [row, column];
-    this.blockThree = [row, column + 1];
-    this.blockFour = [row + 1, column - 1];
+    this.blockThree = [row + 1, column];
+    this.blockFour = [row + 1, column + 1];
   }
   predictBlockLocations(move) {
     const {
@@ -42,26 +42,26 @@ export default class L extends Shape {
       case 'north':
         one = [row, column - 1];
         two = [row, column];
-        three = [row, column + 1];
-        four = [row + 1, column - 1];
+        three = [row + 1, column];
+        four = [row + 1, column + 1];
         break;
       case 'west':
-        one = [row - 1, column - 1];
+        one = [row - 1, column];
         two = [row, column - 1];
-        three = [row + 1, column - 1];
-        four = [row + 1, column];
+        three = [row, column];
+        four = [row + 1, column - 1];
         break;
       case 'south':
-        one = [row, column + 1];
-        two = [row + 1, column - 1];
+        one = [row, column - 1];
+        two = [row, column];
         three = [row + 1, column];
         four = [row + 1, column + 1];
         break;
       case 'east':
-        one = [row - 1, column - 1];
-        two = [row - 1, column];
+        one = [row - 1, column];
+        two = [row, column - 1];
         three = [row, column];
-        four = [row + 1, column];
+        four = [row + 1, column - 1];
         break;
       case 'descend':
         one = [blockOne[0] + 1, blockOne[1]];

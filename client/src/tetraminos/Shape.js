@@ -4,7 +4,6 @@ export default class Shape {
     this.row = 0;
     this.column = 3;
 
-    this.hub = null;
     this.blockOne = null;
     this.blockTwo = null;
     this.blockThree = null;

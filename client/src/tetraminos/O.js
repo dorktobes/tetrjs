@@ -9,7 +9,6 @@ export default class O extends Shape {
   constructor(board) {
     super(board);
     const { row, column } = this;
-    this.hub = [row, column];
     this.blockOne = [row, column + 1];
     this.blockTwo = [row, column];
     this.blockThree = [row + 1, column + 1];

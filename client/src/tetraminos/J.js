@@ -20,7 +20,6 @@ export default class J extends Shape {
   constructor(board) {
     super(board);
     const { row, column } = this;
-    this.hub = [row, column];
     this.blockOne = [row, column - 1];
     this.blockTwo = [row, column];
     this.blockThree = [row, column + 1];
@@ -41,28 +40,24 @@ export default class J extends Shape {
     let four;
     switch (move) {
       case 'north':
-        this.hub = [row, column];
         one = [row, column - 1];
         two = [row, column];
         three = [row, column + 1];
         four = [row + 1, column + 1];
         break;
       case 'west':
-        this.hub = [row + 1, column];
         one = [row - 1, column - 1];
         two = [row - 1, column];
         three = [row, column - 1];
         four = [row + 1, column - 1];
         break;
       case 'south':
-        this.hub = [row, column];
         one = [row, column - 1];
         two = [row + 1, column - 1];
         three = [row + 1, column];
         four = [row + 1, column + 1];
         break;
       case 'east':
-        this.hub = [row + 1, column];
         one = [row - 1, column];
         two = [row, column];
         three = [row + 1, column];
