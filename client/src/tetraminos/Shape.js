@@ -15,7 +15,7 @@ export default class Shape {
 
     this.falling = true;
   }
-  predictBlockLocations() {
+  predictBlockLocations(move) {
     /* this function will be unique for every subclass
      * it exists here as a placeholder
      */
@@ -30,10 +30,10 @@ export default class Shape {
     this.newMoves = this.predictBlockLocations(move);
     const [one, two, three, four] = this.newMoves;
     return (
-      !board[one[0]][one[1]] &&
-      !board[two[0]][two[1]] &&
-      !board[three[0]][three[1]] &&
-      !board[four[0]][four[1]]
+      board[one[0]][one[1]] === 0 &&
+      board[two[0]][two[1]] === 0 &&
+      board[three[0]][three[1]] === 0 &&
+      board[four[0]][four[1]] === 0
     );
   }
   commitMove() {
@@ -44,7 +44,7 @@ export default class Shape {
     this.blockFour = four;
     return true;
   }
-  rotate() {
+  rotateAntiClockwise() {
     let newDirection;
     switch (this.direction) {
       case 'north':
@@ -61,6 +61,26 @@ export default class Shape {
         break;
       default:
         newDirection = 'north';
+    }
+    return this.checkIfMoveIsValid(newDirection) && this.commitMove();
+  }
+  rotateClockwise() {
+    let newDirection;
+    switch (this.direction) {
+      case 'north':
+        newDirection = 'east';
+        break;
+      case 'east':
+        newDirection = 'south';
+        break;
+      case 'south':
+        newDirection = 'west';
+        break;
+      case 'west':
+        newDirection = 'north';
+        break;
+      default:
+        newDirection = this.direction;
     }
     return this.checkIfMoveIsValid(newDirection) && this.commitMove();
   }
