@@ -16,10 +16,11 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      board: new BoardClass(6, 10),
+      board: new BoardClass(8, 15),
       pieces: [I, J, L, O, S, T, Z],
       currentPiece: null,
       timeoutID: null,
+      gameOver: false,
     };
   }
   componentDidMount() {
@@ -54,19 +55,28 @@ class Game extends Component {
     return updatedBoard;
   }
   dropPiece() {
-    this.state.currentPiece.descend();
-    if (this.state.currentPiece.falling) {
-      const timeoutID = setTimeout(this.dropPiece.bind(this), 400);
-      this.setState({ timeoutID });
+    if (!this.state.board.gameOver) {
+      this.state.currentPiece.descend();
+      if (this.state.currentPiece.falling) {
+        const timeoutID = setTimeout(this.dropPiece.bind(this), 400);
+        this.setState({ timeoutID });
+      } else {
+        this.enqueueNewPiece();
+        setTimeout(this.dropPiece.bind(this), 400);
+      }
     } else {
-      this.enqueueNewPiece();
-      setTimeout(this.dropPiece.bind(this), 400);
+      this.setState({ gameOver: true });
     }
   }
   enqueueNewPiece() {
     const newPiece = this.getRandomPiece();
     this.state.board.enqueuePiece(newPiece);
-    this.setState({ currentPiece: this.state.board.currentPiece });
+    if (this.state.board.gameOver) {
+      clearTimeout(this.state.timeoutID);
+      this.setState({ gameOver: true });
+    } else {
+      this.setState({ currentPiece: this.state.board.currentPiece });
+    }
   }
   render() {
     if (!this.state.currentPiece) {

@@ -5,7 +5,7 @@ import Cell from './Cell';
 
 const Row = props => (
   <tr>
-    {props.row.map((cell, i) => <Cell key={`cell${i + cell}`} cell={cell} />)}
+    {props.row.map((cell, i) => <Cell key={`row${JSON.stringify(props.row)}cell${i} ${cell}`} cell={cell} />)}
   </tr>
 );
 Row.propTypes = {
