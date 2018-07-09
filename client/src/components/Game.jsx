@@ -11,6 +11,7 @@ import Z from '../tetraminos/Z';
 
 import Board from './Board';
 import NextPiece from './NextPiece';
+import ScoreBoard from './ScoreBoard';
 
 
 class Game extends Component {
@@ -37,8 +38,12 @@ class Game extends Component {
     }
     window.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
+  getRandomPiece() {
+    const randomIndex = Math.floor(Math.random() * Math.floor(this.state.pieces.length));
+    return this.state.pieces[randomIndex];
+  }
   handleKeyDown(e) {
-    switch (e.code){
+    switch (e.code) {
       case 'KeyA':
       case 'ArrowLeft':
         this.state.currentPiece.moveLeft();
@@ -57,11 +62,9 @@ class Game extends Component {
         this.state.currentPiece.rotateAntiClockwise();
         this.forceUpdate();
         break;
+      default:
+        break;
     }
-  }
-  getRandomPiece() {
-    const randomIndex = Math.floor(Math.random() * Math.floor(this.state.pieces.length));
-    return this.state.pieces[randomIndex];
   }
   generateBoard() {
     const updatedBoard = this.state.board.board.slice().map(row => [...row]);
@@ -114,6 +117,7 @@ class Game extends Component {
     return (
       <div>
         <Board board={this.generateBoard()} />
+        <ScoreBoard score={this.state.board.score} />
         <NextPiece Piece={this.state.board.nextPiece} />
       </div>
     );

@@ -4,6 +4,7 @@
     "describe": 1,
     "test": 1,
     "document": 1,
+    "window": 1,
     "expect": 1
   }
 }
