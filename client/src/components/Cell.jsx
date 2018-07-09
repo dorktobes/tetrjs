@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Cell = props => (
-  <td>
-    {props.cell}
-  </td>
+  <td className={props.cell} />
 );
 
 Cell.propTypes = {
