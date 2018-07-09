@@ -35,6 +35,29 @@ class Game extends Component {
     } else {
       this.dropPiece();
     }
+    window.addEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+  handleKeyDown(e) {
+    switch (e.code){
+      case 'KeyA':
+      case 'ArrowLeft':
+        this.state.currentPiece.moveLeft();
+        this.forceUpdate();
+        break;
+      case 'KeyD':
+      case 'ArrowRight':
+        this.state.currentPiece.moveRight();
+        this.forceUpdate();
+        break;
+      case 'KeyQ':
+        this.state.currentPiece.rotateAntiClockwise();
+        this.forceUpdate();
+        break;
+      case 'KeyE':
+        this.state.currentPiece.rotateAntiClockwise();
+        this.forceUpdate();
+        break;
+    }
   }
   getRandomPiece() {
     const randomIndex = Math.floor(Math.random() * Math.floor(this.state.pieces.length));
