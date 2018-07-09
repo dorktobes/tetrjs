@@ -8,10 +8,8 @@ class NextPiece extends Component {
     super(props);
     this.state = {
       board: [
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
       ],
     };
   }

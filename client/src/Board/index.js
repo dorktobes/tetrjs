@@ -15,6 +15,7 @@ export default class Board {
     this.currentPiece = this.nextPiece;
     this.nextPiece = piece;
     if (this.currentPiece) {
+      this.checkForLineClear();
       this.currentPiece = new this.currentPiece(this.board);
       this.checkForGameOver();
     }
@@ -38,13 +39,14 @@ export default class Board {
   checkForLineClear() {
     const scores = [0, 10, 50, 100, 1000];
     const linesToClear = [];
-    const clearedLines = this.board.reduce((acc, row, i) => {
-      if (row.reduce((count, cell) => count + cell) === row.length) {
-        linesToClear.push(i);
-        return acc + 1;
+    let clearedLines = 0;
+    for (let row = 0; row < this.board.length; row += 1) {
+      const emptySpaces = this.board[row].filter(cell => cell === 0).length;
+      if (!emptySpaces) {
+        clearedLines += 1;
+        linesToClear.push(row);
       }
-      return acc;
-    }, 0);
+    }
     this.score = this.score + scores[clearedLines];
     this.clearLines(linesToClear);
   }

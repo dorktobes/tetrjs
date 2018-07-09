@@ -40,7 +40,8 @@ class Game extends Component {
   }
   getRandomPiece() {
     const randomIndex = Math.floor(Math.random() * Math.floor(this.state.pieces.length));
-    return this.state.pieces[randomIndex];
+    // return this.state.pieces[randomIndex];
+    return this.state.pieces[3];
   }
   handleKeyDown(e) {
     switch (e.code) {
