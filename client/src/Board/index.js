@@ -51,8 +51,12 @@ export default class Board {
     this.clearLines(linesToClear);
   }
   clearLines(linesToClear) {
-    linesToClear.forEach((lineIndex) => {
-      this.board.splice(lineIndex, 1);
+    linesToClear.forEach((lineIndex, i) => {
+      /* since we are removeing lines from the array,
+       * we must adjust the line index based on how many lines have been removed
+       * the lineIndex's position in the array determines how many lines have been removed
+       */
+      this.board.splice(lineIndex - i, 1);
     });
     const newLines = Array(linesToClear.length).fill(0).map(() => Array(this.width).fill(0))
       .concat(this.board);

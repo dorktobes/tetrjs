@@ -40,8 +40,7 @@ class Game extends Component {
   }
   getRandomPiece() {
     const randomIndex = Math.floor(Math.random() * Math.floor(this.state.pieces.length));
-    // return this.state.pieces[randomIndex];
-    return this.state.pieces[3];
+    return this.state.pieces[randomIndex];
   }
   handleKeyDown(e) {
     switch (e.code) {
@@ -90,7 +89,7 @@ class Game extends Component {
         this.setState({ timeoutID });
       } else {
         this.enqueueNewPiece();
-        setTimeout(this.dropPiece.bind(this), 400);
+        setTimeout(this.dropPiece.bind(this), 300);
       }
     } else {
       this.setState({ gameOver: true });
