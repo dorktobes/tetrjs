@@ -1,15 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
-class App extends Component {
-  
-  render() {
-    return (
-      <div>
-        Hello React
-      </div>
-    );
-  }
-}
+import Game from './game';
+
+const App = () => (
+  <Game />
+);
 
 export default App;

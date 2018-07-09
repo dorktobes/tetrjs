@@ -14,20 +14,25 @@ export default class Board {
     this.updateBoard(this.currentPiece);
     this.currentPiece = this.nextPiece;
     this.nextPiece = piece;
-    this.checkForGameOver();
+    if (this.currentPiece) {
+      this.currentPiece = new this.currentPiece(this.board);
+      this.checkForGameOver();
+    }
   }
   checkForGameOver() {
-    const {
-      blockOne,
-      blockTwo,
-      blockThree,
-      blockFour,
-    } = this.currentPiece;
-    if (this.board[blockOne[0]][blockOne[1]] === 1 ||
-      this.board[blockTwo[0]][blockTwo[1]] === 1 ||
-      this.board[blockThree[0]][blockThree[1]] === 1 ||
-      this.board[blockFour[0]][blockFour[1]] === 1) {
-      this.gameOver = true;
+    if (this.currentPiece) {
+      const {
+        blockOne,
+        blockTwo,
+        blockThree,
+        blockFour,
+      } = this.currentPiece;
+      if (this.board[blockOne[0]][blockOne[1]] === 1 ||
+        this.board[blockTwo[0]][blockTwo[1]] === 1 ||
+        this.board[blockThree[0]][blockThree[1]] === 1 ||
+        this.board[blockFour[0]][blockFour[1]] === 1) {
+        this.gameOver = true;
+      }
     }
   }
   checkForLineClear() {

@@ -3,6 +3,7 @@ export default class Shape {
     this.direction = 'north';
     this.row = 0;
     this.column = 3;
+    this.shape = null;
 
     this.blockOne = null;
     this.blockTwo = null;
