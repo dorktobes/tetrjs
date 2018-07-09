@@ -30,9 +30,6 @@ class Game extends Component {
       this.state.board.enqueuePiece(this.getRandomPiece());
       this.state.board.enqueuePiece(this.getRandomPiece());
       this.state.setState({ currentPiece: this.state.board.currentPiece }, this.dropPiece);
-    } else if (!this.state.currentPiece.falling) {
-      this.state.board.enqueuePiece(this.getRandomPiece());
-      this.state.setState({ currentPiece: this.state.board.currentPiece }, this.dropPiece);
     } else {
       this.dropPiece();
     }
@@ -58,8 +55,18 @@ class Game extends Component {
   }
   dropPiece() {
     this.state.currentPiece.descend();
-    const timeoutID = setTimeout(this.dropPiece.bind(this), 400);
-    this.setState({ timeoutID });
+    if (this.state.currentPiece.falling) {
+      const timeoutID = setTimeout(this.dropPiece.bind(this), 400);
+      this.setState({ timeoutID });
+    } else {
+      this.enqueueNewPiece();
+      setTimeout(this.dropPiece.bind(this), 400);
+    }
+  }
+  enqueueNewPiece() {
+    const newPiece = this.getRandomPiece();
+    this.state.board.enqueuePiece(newPiece);
+    this.setState({ currentPiece: this.state.board.currentPiece });
   }
   render() {
     if (!this.state.currentPiece) {

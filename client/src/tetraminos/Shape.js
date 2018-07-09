@@ -30,10 +30,10 @@ export default class Shape {
     this.newMoves = this.predictBlockLocations(move);
     const [one, two, three, four] = this.newMoves;
     return (
-      board[one[0]][one[1]] === 0 &&
-      board[two[0]][two[1]] === 0 &&
-      board[three[0]][three[1]] === 0 &&
-      board[four[0]][four[1]] === 0
+      board[one[0]] && (board[one[0]][one[1]] === 0) &&
+      board[two[0]] && (board[two[0]][two[1]] === 0) &&
+      board[three[0]] && (board[three[0]][three[1]] === 0) &&
+      board[four[0]] && (board[four[0]][four[1]] === 0)
     );
   }
   commitMove(move) {
