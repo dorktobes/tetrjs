@@ -27,10 +27,10 @@ export default class Board {
         blockThree,
         blockFour,
       } = this.currentPiece;
-      if (this.board[blockOne[0]][blockOne[1]] === 1 ||
-        this.board[blockTwo[0]][blockTwo[1]] === 1 ||
-        this.board[blockThree[0]][blockThree[1]] === 1 ||
-        this.board[blockFour[0]][blockFour[1]] === 1) {
+      if (this.board[blockOne[0]][blockOne[1]] !== 0 ||
+        this.board[blockTwo[0]][blockTwo[1]] !== 0 ||
+        this.board[blockThree[0]][blockThree[1]] !== 0 ||
+        this.board[blockFour[0]][blockFour[1]] !== 0) {
         this.gameOver = true;
       }
     }
@@ -64,10 +64,10 @@ export default class Board {
         blockThree,
         blockFour,
       } = piece;
-      this.board[blockOne[0]][blockOne[1]] = 1;
-      this.board[blockTwo[0]][blockTwo[1]] = 1;
-      this.board[blockThree[0]][blockThree[1]] = 1;
-      this.board[blockFour[0]][blockFour[1]] = 1;
+      this.board[blockOne[0]][blockOne[1]] = piece.shape;
+      this.board[blockTwo[0]][blockTwo[1]] = piece.shape;
+      this.board[blockThree[0]][blockThree[1]] = piece.shape;
+      this.board[blockFour[0]][blockFour[1]] = piece.shape;
     }
   }
 }
