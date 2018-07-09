@@ -10,6 +10,7 @@ import T from '../tetraminos/T';
 import Z from '../tetraminos/Z';
 
 import Board from './Board';
+import NextPiece from './NextPiece';
 
 
 class Game extends Component {
@@ -90,6 +91,7 @@ class Game extends Component {
     return (
       <div>
         <Board board={this.generateBoard()} />
+        <NextPiece Piece={this.state.board.nextPiece} />
       </div>
     );
   }
