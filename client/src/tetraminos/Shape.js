@@ -53,6 +53,7 @@ export default class Shape {
         this.column = this.column + 1;
         break;
       default:
+        this.direction = move;
         break;
     }
     return true;
@@ -75,7 +76,7 @@ export default class Shape {
       default:
         newDirection = 'north';
     }
-    return this.checkIfMoveIsValid(newDirection) && this.commitMove();
+    return this.checkIfMoveIsValid(newDirection) && this.commitMove(newDirection);
   }
   rotateClockwise() {
     let newDirection;

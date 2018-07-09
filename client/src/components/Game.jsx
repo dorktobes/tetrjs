@@ -59,7 +59,7 @@ class Game extends Component {
         this.forceUpdate();
         break;
       case 'KeyE':
-        this.state.currentPiece.rotateAntiClockwise();
+        this.state.currentPiece.rotateClockwise();
         this.forceUpdate();
         break;
       default:
