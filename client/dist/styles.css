@@ -1,0 +1,34 @@
+body {
+    background: #eee;
+    text-align: center;
+    padding: 0 25px;
+    font-family: arial, sans-serif;
+}
+table {
+  border: solid;
+}
+td {
+  height: 15px;
+  width: 15px;
+}
+.O {
+  background-color: yellow;
+}
+.L {
+  background-color: darkOrange;
+}
+.J {
+  background-color: blue;
+}
+.S {
+  background-color: springGreen;
+}
+.Z {
+  background-color: red;
+}
+.T {
+  background-color: purple;
+}
+.I {
+  background-color: aqua;
+}
