@@ -125,11 +125,13 @@ class Game extends Component {
     const currentPiece = null;
     const timeoutID = null;
     const gameOver = false;
+    const speed = 300;
     this.setState({
       board,
       currentPiece,
       timeoutID,
       gameOver,
+      speed,
     }, this.dropPiece);
   }
   render() {
