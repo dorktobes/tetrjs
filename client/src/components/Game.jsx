@@ -54,6 +54,11 @@ class Game extends Component {
         this.state.currentPiece.moveRight();
         this.forceUpdate();
         break;
+      case 'KeyS':
+      case 'ArrowDown':
+        this.state.currentPiece.descend();
+        this.forceUpdate();
+        break;
       case 'KeyQ':
         this.state.currentPiece.rotateAntiClockwise();
         this.forceUpdate();
