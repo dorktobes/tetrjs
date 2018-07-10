@@ -49,7 +49,7 @@ export default class Shape {
       case 'left':
         this.column = this.column - 1;
         break;
-      case 'moveRight':
+      case 'right':
         this.column = this.column + 1;
         break;
       default:

@@ -85,7 +85,7 @@ class Game extends Component {
     if (!this.state.board.gameOver) {
       this.state.currentPiece.descend();
       if (this.state.currentPiece.falling) {
-        const timeoutID = setTimeout(this.dropPiece.bind(this), 400);
+        const timeoutID = setTimeout(this.dropPiece.bind(this), 300);
         this.setState({ timeoutID });
       } else {
         this.enqueueNewPiece();
@@ -115,10 +115,12 @@ class Game extends Component {
       this.state.currentPiece = this.state.board.currentPiece;
     }
     return (
-      <div>
+      <div className="main">
         <Board board={this.generateBoard()} />
-        <ScoreBoard score={this.state.board.score} />
-        <NextPiece Piece={this.state.board.nextPiece} />
+        <div>
+          <ScoreBoard score={this.state.board.score} />
+          <NextPiece Piece={this.state.board.nextPiece} />
+        </div>
       </div>
     );
   }

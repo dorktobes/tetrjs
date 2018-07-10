@@ -11,6 +11,10 @@ td {
   height: 15px;
   width: 15px;
 }
+.main {
+  display: flex;
+  justify-content: space-around;
+}
 .O {
   background-color: yellow;
 }
