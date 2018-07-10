@@ -18,7 +18,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      board: new BoardClass(8, 15),
+      board: new BoardClass(10, 22),
       pieces: [I, J, L, O, S, T, Z],
       currentPiece: null,
       timeoutID: null,

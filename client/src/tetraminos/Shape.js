@@ -1,7 +1,7 @@
 export default class Shape {
   constructor(board) {
     this.direction = 'north';
-    this.row = 0;
+    this.row = 2;
     this.column = Math.floor(board[0].length / 2) - 1;
     this.shape = null;
 
