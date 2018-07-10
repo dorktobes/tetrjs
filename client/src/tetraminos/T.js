@@ -12,7 +12,7 @@ import Shape from './Shape';
  * 🐯🔄🐯
  * EAST
  * ◽️🐯
- * ◽️🐯🔄
+ * 🐯🐯🔄
  * ◽️🐯
  */
 
@@ -62,7 +62,7 @@ export default class L extends Shape {
       case 'east':
         one = [row - 1, column - 1];
         two = [row, column - 1];
-        three = [row, column];
+        three = [row, column - 2];
         four = [row + 1, column - 1];
         break;
       case 'descend':
