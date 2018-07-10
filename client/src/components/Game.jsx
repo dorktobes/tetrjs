@@ -24,6 +24,7 @@ class Game extends Component {
       currentPiece: null,
       timeoutID: null,
       gameOver: false,
+      speed: 300,
     };
     this.startNewGame = this.startNewGame.bind(this);
   }
@@ -92,11 +93,18 @@ class Game extends Component {
     if (!this.state.board.gameOver) {
       this.state.currentPiece.descend();
       if (this.state.currentPiece.falling) {
-        const timeoutID = setTimeout(this.dropPiece.bind(this), 300);
-        this.setState({ timeoutID });
+        const timeoutID = setTimeout(this.dropPiece.bind(this), this.state.speed);
+        this.setState({
+          timeoutID,
+          speed: this.state.speed % 100 === 0 ? this.state.speed * 0.75 : this.state.speed,
+        });
       } else {
         this.enqueueNewPiece();
-        setTimeout(this.dropPiece.bind(this), 300);
+        const timeoutID = setTimeout(this.dropPiece.bind(this), this.state.speed);
+        this.setState({
+          timeoutID,
+          speed: this.state.speed % 100 === 0 ? this.state.speed * 0.75 : this.state.speed,
+        });
       }
     } else {
       this.setState({ gameOver: true });
