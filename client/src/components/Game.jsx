@@ -116,7 +116,7 @@ class Game extends Component {
     }
     return (
       <div className="main">
-        <Board board={this.generateBoard()} />
+        <Board board={this.generateBoard().slice(2)} />
         <div>
           <ScoreBoard score={this.state.board.score} />
           <NextPiece Piece={this.state.board.nextPiece} />
