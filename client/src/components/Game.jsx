@@ -12,6 +12,7 @@ import Z from '../tetraminos/Z';
 import Board from './Board';
 import NextPiece from './NextPiece';
 import ScoreBoard from './ScoreBoard';
+import NewGame from './NewGame';
 
 
 class Game extends Component {
@@ -24,6 +25,7 @@ class Game extends Component {
       timeoutID: null,
       gameOver: false,
     };
+    this.startNewGame = this.startNewGame.bind(this);
   }
   componentDidMount() {
     if (!this.state.currentPiece) {
@@ -110,6 +112,18 @@ class Game extends Component {
       this.setState({ currentPiece: this.state.board.currentPiece });
     }
   }
+  startNewGame() {
+    const board = new BoardClass(10, 22);
+    const currentPiece = null;
+    const timeoutID = null;
+    const gameOver = false;
+    this.setState({
+      board,
+      currentPiece,
+      timeoutID,
+      gameOver,
+    }, this.dropPiece);
+  }
   render() {
     if (!this.state.currentPiece) {
       /* if there is no current piece, then the game hasn't started.
@@ -125,6 +139,7 @@ class Game extends Component {
         <div>
           <ScoreBoard score={this.state.board.score} />
           <NextPiece Piece={this.state.board.nextPiece} />
+          {this.state.gameOver ? <NewGame startNewGame={this.startNewGame} /> : ''}
         </div>
       </div>
     );
