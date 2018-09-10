@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const HighScore = ({ name, score }) => (
   <li>
-    <span className="name"><em>{name}</em></span>
+    <span className="name">{name}</span>
     <span className="score">{score}</span>
   </li>
 );

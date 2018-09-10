@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 import HighScore from './HighScore';
 
 const HighScoreList = ({ highScores }) => (
-  <ul>
-    {highScores.map(({ name, score }) => <HighScore name={name} score={score} />)}
-  </ul>
+  <div>
+    <h4> High Scores </h4>
+    <ul>
+      {highScores.map(({ name, score }) => <HighScore name={name} score={score} />)}
+    </ul>
+  </div>
 );
 
 HighScoreList.propTypes = {

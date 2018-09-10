@@ -11,6 +11,17 @@ td {
   height: 15px;
   width: 15px;
 }
+
+ul {
+  display: contents;
+}
+
+li {
+  display: flex;
+}
+span, .name, .score {
+  margin: auto;
+}
 .main {
   display: flex;
   justify-content: space-around;
