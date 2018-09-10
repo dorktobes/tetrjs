@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import BoardClass from '../Board';
 import I from '../tetraminos/I';
@@ -12,6 +13,7 @@ import Z from '../tetraminos/Z';
 import Board from './Board';
 import NextPiece from './NextPiece';
 import ScoreBoard from './ScoreBoard';
+import HighScoreList from './HighScoreList';
 import NewGame from './NewGame';
 
 
@@ -29,17 +31,13 @@ class Game extends Component {
     this.startNewGame = this.startNewGame.bind(this);
   }
   componentDidMount() {
-    if (!this.state.currentPiece) {
-      /* if there is no current piece, then the game hasn't started.
-       * We queue up a first piece and the next in line
-       */
-      this.state.board.enqueuePiece(this.getRandomPiece());
-      this.state.board.enqueuePiece(this.getRandomPiece());
-      this.state.setState({ currentPiece: this.state.board.currentPiece }, this.dropPiece);
-    } else {
-      this.dropPiece();
-    }
+    this.dropPiece();
     window.addEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.gameOver && !prevState.gameOver) {
+      console.log(this.state.board.score);
+    }
   }
   getRandomPiece() {
     const randomIndex = Math.floor(Math.random() * Math.floor(this.state.pieces.length));
@@ -103,7 +101,7 @@ class Game extends Component {
         const timeoutID = setTimeout(this.dropPiece.bind(this), this.state.speed);
         this.setState({
           timeoutID,
-          speed: this.state.speed % 100 === 0 ? this.state.speed * 0.75 : this.state.speed,
+          speed: this.state.timeoutID % 100 === 0 ? this.state.speed * 0.75 : this.state.speed,
         });
       }
     } else {
@@ -150,10 +148,18 @@ class Game extends Component {
           <ScoreBoard score={this.state.board.score} />
           <NextPiece Piece={this.state.board.nextPiece} />
           {this.state.gameOver ? <NewGame startNewGame={this.startNewGame} /> : ''}
+          <HighScoreList highScores={this.props.highScores} />
         </div>
       </div>
     );
   }
 }
+
+Game.propTypes = {
+  highScores: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    score: PropTypes.number,
+  })).isRequired,
+};
 
 export default Game;

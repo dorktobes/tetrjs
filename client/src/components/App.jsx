@@ -1,9 +1,12 @@
 import React from 'react';
 
-import Game from './game';
+import Game from './Game';
+import withHighScore from './withHighScore';
+
+const GameWithHighScore = withHighScore(Game);
 
 const App = () => (
-  <Game />
+  <GameWithHighScore />
 );
 
 export default App;
