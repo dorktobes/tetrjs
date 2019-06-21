@@ -15,6 +15,7 @@ import NextPiece from './NextPiece';
 import ScoreBoard from './ScoreBoard';
 import HighScoreList from './HighScoreList';
 import NewGame from './NewGame';
+import EnterYourName from './EnterYourName';
 
 
 class Game extends Component {
@@ -149,6 +150,7 @@ class Game extends Component {
           <NextPiece Piece={this.state.board.nextPiece} />
           {this.state.gameOver ? <NewGame startNewGame={this.startNewGame} /> : ''}
           <HighScoreList highScores={this.props.highScores} />
+          <EnterYourName score={this.state.board.score} handleSubmit={this.props.saveScore} />
         </div>
       </div>
     );
@@ -160,6 +162,7 @@ Game.propTypes = {
     name: PropTypes.string,
     score: PropTypes.number,
   })).isRequired,
+  saveScore: PropTypes.func.isRequired,
 };
 
 export default Game;

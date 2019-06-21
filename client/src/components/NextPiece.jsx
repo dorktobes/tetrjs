@@ -32,7 +32,6 @@ class NextPiece extends Component {
     return updatedBoard;
   }
   render() {
-    this.renderPieceToBoard();
     return (
       <div className="next-piece">
         <Board board={this.renderPieceToBoard()} />

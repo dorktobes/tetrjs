@@ -10,11 +10,12 @@ const Board = props => (
     </tbody>
   </table>
 );
+
 Board.propTypes = {
   board: PropTypes.arrayOf(
     PropTypes.arrayOf(
-      PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-    )
+      PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    ),
   ).isRequired,
 };
 
